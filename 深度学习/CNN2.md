@@ -1,7 +1,5 @@
 # CNN
 
-# 初级
-
 Q1：***CNN和RNN有什么区别？什么时候使用它们？***
 
 - CNN最适用于需要平移不变性的情况。平移不变性是指，无论目标出现在图像中的哪个位置，它都会检测到同样的这些特征，输出同样的响应。
@@ -26,13 +24,11 @@ Q4：***比较CNN和多层感知机MLP***
 
 引用：[https://medium.com/data-science-bootcamp/multilayer-perceptron-mlp-vs-convolutional-neural-network-in-deep-learning-c890f487a8f1](https://medium.com/data-science-bootcamp/multilayer-perceptron-mlp-vs-convolutional-neural-network-in-deep-learning-c890f487a8f1)
 
-Q*5*： *****CNN*中的*全连接层*有什么作用？**  
+*Q5*： *****CNN*中的*全连接层*有什么作用？**  
 
 - 全连接层在整个网络卷积神经网络中起到“分类器”的作用。如果说卷积层、池化层和激活函数等操作是将原始数据映射到隐层特征空间的话（特征提取+选择的过程），全连接层则起到将学到的特征表示映射到样本的标记空间的作用。换句话说，就是把特征整合到一起（高度提纯特征），方便交给最后的分类器或者回归。
 
-[data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/%3E%3C/svg%3E](data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black' width='18px' height='18px'%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z'/%3E%3C/svg%3E)
 
-[data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg fill='%23D3D3D3' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24px' height='24px'%3E%3Cpath d='M11,16.4l-4.7-4.7l1.4-1.4l3.3,3.3l8.4-8.4C17.5,3.3,14.9,2,12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10 c0-1.9-0.5-3.6-1.4-5.1L11,16.4z'/%3E%3C/svg%3E](data:image/svg+xml,%3C%3Fxml version='1.0'%3F%3E%3Csvg fill='%23D3D3D3' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24px' height='24px'%3E%3Cpath d='M11,16.4l-4.7-4.7l1.4-1.4l3.3,3.3l8.4-8.4C17.5,3.3,14.9,2,12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10 c0-1.9-0.5-3.6-1.4-5.1L11,16.4z'/%3E%3C/svg%3E)
 
 *Q6*：*****解释RELU激活函数在卷积神经网络中的意义*****
 
@@ -47,14 +43,28 @@ Q8：***解释Valid Paddding和Same Padding***
 - valid padding：**当filter全部在image里面的时候，进行卷积运算**
 - same padding：**当filter的中心(K)与image的边角重合时，开始做卷积运算；卷积之后输出的feature map尺寸保持不变**
 
-# 中级
-
 Q9：****Pooling有哪些不同类型？说明他们的特点。****
+
+- **max pooling：返回卷积核覆盖部分的最大值并抑制噪声**
+- **average pooling：计算卷积核覆盖的特征图的平均值**
+- sum pooling：计算卷积核窗口中所有元素的总和
+- 最广泛使用的池化技术是**max pooling**，因为它捕获了最重要的特征。
 
 Q12：**解释flatten层在CNN中的角色和作用**
 
+- 在对图像的特征表示进行一系列卷积和池化操作之后，我们将最终池化层的输出展平为一个长的连续线性数组或向量。将所有生成的二维数组转换为向量的过程称为Flattening。
+Flatten 输出作为输入提供给具有不同隐藏层数的完全连接的神经网络，以学习特征表示中存在的非线性复杂性。
+
 Q13：****列出池化层的超参数****
+
+- 池化层的超参数包括filter size、stride、max/average pooling，如果池化层的输入维度是$n_{h}*n_{w}*n_{c}$，那么输出维度将是$((n_{h}-f)/s+1)*((n_{w}-f)/s+1)*n_{c}$
 
 Q14：****解释CNN中“参数共享”和“稀疏连接”的意义****
 
+- 参数共享：在卷积中，我们在对输入进行卷积时共享参数。这背后的直觉是，对图像的一部分有用的特征检测器也可能对图像的另一部分有用。因此，通过使用单个卷积核，我们对所有整个输入进行了卷积，因此参数是共享的。
+- 稀疏连接：对于每一层，每个输出值都取决于少量输入，而不是考虑所有输入。
+
 Q15：**可以使用CNN执行降维操作吗？如果可以，CNN中哪个相关子层执行了降维操作？**
+
+- CNN可以被用于降维操作
+- 池化层，Pooling layer 的主要目标是减少 CNN 的空间维度。为了降低空间维度，它将执行下采样操作，通过在输入矩阵上滑动卷积核矩阵来创建池化特征图。
